@@ -1,4 +1,12 @@
 .jumbotron {
   text-align: center;
+}
 
+input {
+  border: solid 1px;
+}
+
+img {
+  height: 160px;
+  width: 120px;
 }

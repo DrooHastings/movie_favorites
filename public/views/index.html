@@ -8,10 +8,19 @@
     <link rel="stylesheet" href="/vendors/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
   </head>
-  <body >
+  <body ng-app='myApp'>
     <div class="jumbotron">
-      <h1>Find the Sickest Flicks</h1>
+      <h1>.desert island + you = which movies?</h1>
+    </div>
+    <div ng-controller="MovieController as MC" >
+      <input placeholder="Search for Movies" ng-model='MC.movie_name'>
+      <button class="btn" ng-click='MC.searchMovies(MC.movie_name)'>Go</button>
+        <div ng-repeat='thing in MC.items' class='col-sm-3'>
+          <img ng-src="{{thing.Poster}}">
+          <h4>{{thing.Title}}</h4>
+          <h4>{{thing.Year}}</h4>
 
+        </div>
     </div>
   </body>
 </html>

@@ -10,3 +10,11 @@ img {
   height: 160px;
   width: 120px;
 }
+
+input {
+height: 20px;
+width: 300px;
+border: 1px solid #000;
+margin-top: 10px;
+float: left;
+}

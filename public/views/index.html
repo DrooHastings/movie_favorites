@@ -14,7 +14,7 @@
     </div>
     <div ng-controller="MovieController as MC" >
       <input placeholder="Search for Movies" ng-model='MC.movie_name'>
-      <button class="btn" ng-click='MC.searchMovies(MC.movie_name)'>Go</button>
+      <button class="search" class="btn" ng-click='MC.searchMovies(MC.movie_name)'>Go</button>
         <div ng-repeat='thing in MC.items' class='col-sm-3'>
           <img ng-src="{{thing.Poster}}">
           <h4>{{thing.Title}}</h4>

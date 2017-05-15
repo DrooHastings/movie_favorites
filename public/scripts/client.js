@@ -1,4 +1,20 @@
-var myApp = angular.module ( 'myApp', [] );
+var myApp = angular.module('myApp', []);
+
+
+
+//set up config
+// myApp.config(function($routeProvider, $locationProvider){
+//   $routeProvider.when('/', {
+//     templateUrl: 'public/views/index.html',
+//     controller: 'MovieController as MC'
+// }).when('/favorites', {
+//     templateUrl: 'public/views/favorites.html',
+//     controller: 'FavoritesController as FC'
+//   }).otherwise({ redirectTo: '/'});
+//   //loc provider
+//   $locationProvider.html5Mode(true);
+// });
+
 
 //set up controller
 myApp.controller( 'MovieController', function($http){
@@ -7,7 +23,11 @@ myApp.controller( 'MovieController', function($http){
   //globals
   var vm = this;
   vm.items = [];
-  vm.favorites = [];
+  vm.favorites= [];
+
+
+
+
 
 
 vm.searchMovies= function(name){
@@ -22,37 +42,43 @@ vm.searchMovies= function(name){
   });
 };
 
+vm.addFav = function(title, year, poster){
+  objectToSend ={
+    title: title,
+    year: year,
+    poster: poster
+  };
+  console.log('in addFav with id:', title, year, poster);
+  $http({
+    method: 'POST',
+    url: '/movies',
+    data: objectToSend
+  }).then(function success(response){
+      console.log('back from the server with:', response);
 
+  });
+  };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  vm.getFav = function(){
+    console.log('in getFav');
+    $http({
+      method: 'GET',
+      url: '/movies'
+    }).then(function success(response){
+      console.log('response:', response.data);
+      vm.favorites = response.data;
+    });//ng-repeat to the DOM resonse =vm.favs
+  };//end getFav
 
 
 
 });//end controller
+
+// myApp.controller( 'FavoritesController', function($http){
+//   console.log('NG');
+//
+//
+//
+//
+//
+// });//end FavoritesController
